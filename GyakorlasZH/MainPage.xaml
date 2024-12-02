@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GyakorlasZH.MainPage">
+                
+    <Grid ColumnDefinitions="*, *" 
+          RowDefinitions="1*, 1*, 1*"
+          ColumnSpacing="20"
+          RowSpacing="5">
+
+        <StackLayout>
+            <Label Text="Márka" HorizontalOptions="Start" VerticalOptions="Start"/>
+            <Entry x:Name="markaEntry" Text="{Binding Brand, Mode=TwoWay}"/>
+            <Label Text="Maximum ár"/>
+            <Slider x:Name="maxarSlider" Minimum="100" Maximum="10000" Value="{Binding MaxPrice, Mode=TwoWay}"/>
+        </StackLayout>
+
+        <StackLayout Grid.Row="1">
+            <Label Text="Fajta"/>
+            <Entry x:Name="fajtaEntry" Text="{Binding SelectedType, Mode=TwoWay}"/> 
+            <Label Text="Napok száma"/>
+            <Slider x:Name="napokszamaSlider" Minimum="1" Maximum="10" Value="{Binding Days, Mode=TwoWay}"/>
+        </StackLayout>
+
+        <StackLayout Grid.Row="2">
+            <Button x:Name="keresButton" Text="Keres" Command="{Binding command}"/>
+            <Label x:Name="eredmenyLabel"/>
+        </StackLayout>
+
+        <CollectionView ItemsSource="{Binding cars}" Grid.Column="1">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Orientation="Horizontal" Padding="10">
+                        <Label Text="{Binding Full}"/>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </Grid>
+
+</ContentPage>
